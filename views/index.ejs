@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://trello.com/1/client.js?key=5639effd6821342be2da51a768a72fce"></script>
+  </head>
+  <body>
+    <script>
+      var authenticationSuccess = function() { console.log('Successful authentication'); };
+      var authenticationFailure = function() { console.log('Failed authentication'); };
+      var getSuccess = function(endpoint) {
+          return function(data) {
+            $.post(endpoint, {data: data}, function(dat, res, jqXHR) {
+                console.log('Get list successfully. Data returned:' + JSON.stringify(dat));
+            }, 'json');
+          };
+      };
+
+      Trello.authorize({
+        type: 'redirect',
+        name: 'Getting Started Application',
+        scope: {
+          read: 'true',
+          write: 'true' },
+        expiration: 'never',
+        success: authenticationSuccess,
+        error: authenticationFailure
+      });
+
+      var listCardsApi = '/lists/{list_id}/cards';
+      var masterBacklogID = '<%= masterBacklogID %>';
+      var doneThisWeekID = '<%= doneThisWeekID %>';
+
+      Trello.get(listCardsApi.replace('{list_id}', masterBacklogID),
+          {fields: 'name'},
+          getSuccess('/committed'));
+
+      Trello.get(listCardsApi.replace('{list_id}', doneThisWeekID),
+          {fields: 'name'},
+          getSuccess('/completed'));
+    </script>
+  </body>
+</html>

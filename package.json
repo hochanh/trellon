@@ -1,0 +1,32 @@
+{
+  "name": "trellon",
+  "version": "1.0.0",
+  "description": "A simple app to save Trello data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manhtai/trellon.git"
+  },
+  "keywords": [
+    "trello",
+    "api"
+  ],
+  "author": "manhtai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manhtai/trellon/issues"
+  },
+  "homepage": "https://github.com/manhtai/trellon#readme",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "ejs": "^2.5.5",
+    "express": "^4.14.1",
+    "mongodb": "^2.2.22"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
